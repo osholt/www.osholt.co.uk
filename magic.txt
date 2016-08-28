@@ -1,3 +1,0 @@
-This is a magic file.
-This should be removed at a later date.
-And one more time shall we.
