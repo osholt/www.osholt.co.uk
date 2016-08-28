@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Oliver Holt -- Maintainer -- @osholt
+
+# THANKS
+
+    University of Bath
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, PHP5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
+    GIMP2

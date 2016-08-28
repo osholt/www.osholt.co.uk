@@ -1,0 +1,47 @@
+<?php //how to do this again in the future http://web.archive.org/web/20120828065248/http://moens.ch/2012/05/31/providing-email-client-autoconfiguration-information/
+$raw = file_get_contents('php://input');
+$matches = array();
+preg_match('/<EMailAddress>(.*)<\/EMailAddress>/', $raw, $matches);
+header('Content-Type: application/xml');
+?>
+<?xml version="1.0" encoding="utf-8" ?>
+<Autodiscover xmlns="http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006">
+	<Response xmlns="http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a">
+		<Account>
+			<AccountType>email</AccountType>
+			<Action>settings</Action>
+			<Protocol>
+				<Type>IMAP</Type>
+				<Server>imap.gmail.com</Server>
+				<Port>993</Port>
+				<LoginName><?php echo $matches[1]; ?></LoginName>
+				<DomainRequired>off</DomainRequired>
+				<SPA>off</SPA>
+				<SSL>on</SSL>
+				<AuthRequired>on</AuthRequired>
+			</Protocol>
+			<Protocol>
+				<Type>POP3</Type>
+				<Server>pop.gmail.com</Server>
+				<Port>995</Port>
+				<LoginName><?php echo $matches[1]; ?></LoginName>
+				<DomainRequired>off</DomainRequired>
+				<SPA>off</SPA>
+				<SSL>on</SSL>
+				<AuthRequired>on</AuthRequired>
+			</Protocol>
+			<Protocol>
+				<Type>SMTP</Type>
+				<Server>smtp.gmail.com</Server>
+				<Port>465</Port>
+				<LoginName><?php echo $matches[1]; ?></LoginName>
+				<DomainRequired>off</DomainRequired>
+				<SPA>off</SPA>
+				<SSL>on</SSL>
+				<AuthRequired>on</AuthRequired>
+				<UsePOPAuth>on</UsePOPAuth>
+				<SMTPLast>off</SMTPLast>
+			</Protocol>
+		</Account>
+	</Response>
+</Autodiscover>
